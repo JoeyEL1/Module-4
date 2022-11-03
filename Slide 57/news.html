@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
+  <template id="news-template">
+    <div class="card">
+      <h2 class="news-id">News ID</h2>
+      <h3 class="news-title">News Title</h3>
+      <p class="news-content">News Content</p>
+    </div>
+  </template>
 <body>
  
 <h2>Random News Every 5seconds</h2>
 <p id="demo"></p>
 <div>   
 </div>
+<div id="news-items"></div>
 <script>
     
 let output = document.querySelector("div");
@@ -37,8 +45,23 @@ function printNews()
      index++;
    }
 }
+
+//this templating technique from the lecture notes is more of what the exercise is asking for
+//this reads all news items and displays them, every 5 seconds. 
+//so if the array has changed in that 5 second interval, the next run will pick up the changes
+function addCards() {
+  document.querySelector('#news-items').innerText = ''
+  news.forEach((item) => {
+    const template = document.getElementById("news-template").content.cloneNode(true);
+    template.querySelector('.news-id').innerText = item.id;
+    template.querySelector('.news-title').innerText = item.title;
+    template.querySelector('.news-content').innerText = item.content;
+    document.querySelector('#news-items').appendChild(template);
+  });
+}
  
 timer = setInterval(printNews, 5000);
+timer = setInterval(addCards, 5000);
 </script>
  
 </body>
