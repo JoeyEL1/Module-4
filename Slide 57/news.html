@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<h2>Random News Every 5seconds</h2>
+<p id="demo"></p>
+<div>   
+</div>
+<script>
+    
+let output = document.querySelector("div");
+let news=[{
+    id:1,title:'News1',content:"bla"
+},
+{
+    id:2,title:'News2',content:"ble"
+},
+{
+    id:3,title:'News3',content:"blu"
+},
+]
+ 
+let timer = null;
+let index = 0;  
+ 
+function printNews() 
+{
+ 
+   output.innerHTML =   "News ID: "+ news[index].id +"<br>"+
+                        "News Title: "+ news[index].title +"<br>"+
+                        "News content "+ news[index].content + "<br>";
+
+   if(index === news.length-1)
+   {
+     clearInterval(5000);  
+   } else {
+     index++;
+   }
+}
+ 
+timer = setInterval(printNews, 5000);
+</script>
+ 
+</body>
+</html>
